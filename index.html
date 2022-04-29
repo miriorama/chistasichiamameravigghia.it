@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="paper">
+            <div class="paper-title">Elisa & Fabio</div>
+        </div>
+    </div>
+    <form onsubmit="APP.onSubmit();" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLScP4oZ__NerX_e81grWodIpjgRZuMRja-_XQZqSwQScdVAmDA/formResponse" target="hidden_iframe">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="entry.2123672407"><br>
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="entry.2137321738"><br>
+
+        <input type="radio" id="ciSonoSi" name="entry.1133537925" value="S%C3%AC,+ci+sar%C3%B2">
+        <label for="ciSonoSi">Sì</label>
+
+        <input type="radio" id="ciSonoNo" name="entry.1133537925" value="No, non ci sarò">
+        <label for="ciSonoNo">No</label>
+
+        <label for="numeroPartecipanti">Numero partecipanti</label>
+        <input type="number" min="1" max="99" id="numeroPartecipanti" name="entry.559760350"><br>
+
+        <input type="submit" value="Conferma">
+    </form>
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="/*if(submitted) {}*/"></iframe>
+</body>
+
+<script type="text/javascript">
+
+    var APP = (function() {
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScP4oZ__NerX_e81grWodIpjgRZuMRja-_XQZqSwQScdVAmDA/formResponse';
+        let app = {};
+
+        app.onSubmit = function() {
+            let submitted=true;
+            console.log('form inviato');
+        }
+
+        app.submit = function() {
+            let $form = document.querySelector('#form');
+            let formData = new FormData($form);
+
+            fetch(GOOGLE_FORM_URL, formData).then(function (response) {
+                // The API call was successful!
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    return Promise.reject(response);
+                }
+            }).then(function (data) {
+                // This is the JSON from our response
+                console.log('OK');
+            }).catch(function (err) {
+                // There was an error
+                console.warn('Something went wrong.', err);
+            });
+        }
+
+        return app;
+    })();
+</script>
+</html>
