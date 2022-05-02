@@ -4,38 +4,115 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Elisa & Fabio si sposano!</title>
 
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
+
+        <div class="polaroid-container">
+            <div class="polaroid-bkg"><div class="polaroid polaroid-1" style="background-image: url(img/foto-1.jpg);"></div></div>
+            <div class="polaroid-bkg"><div class="polaroid polaroid-2" style="background-image: url(img/foto-2.jpg);"></div></div>
+            <div class="polaroid-bkg"><div class="polaroid polaroid-3" style="background-image: url(img/foto-3.jpg);"></div></div>
+            <div class="polaroid-bkg"><div class="polaroid polaroid-4" style="background-image: url(img/foto-4.jpg);"></div></div>
+            <div class="polaroid-bkg"><div class="polaroid polaroid-5" style="background-image: url(img/foto-5.jpg);"></div></div>
+            <div class="polaroid-bkg"><div class="polaroid polaroid-6" style="background-image: url(img/foto-6.jpg);"></div></div>
+            <div class="polaroid-bkg"><div class="polaroid polaroid-7" style="background-image: url(img/foto-7.jpg);"></div></div>
+            <div class="polaroid-bkg"><div class="polaroid polaroid-8" style="background-image: url(img/foto-8.jpg);"></div></div>
+        </div>
+
         <div class="paper">
-            <div class="paper-title">Elisa & Fabio</div>
+            <div class="img">
+                <img src="/img/elisa&fabio.svg" alt="">
+            </div>
+                <div class="date">17 SETTEMBRE 2022</div>
+                <div class="section cerimonia">
+                    <div class="title">Cerimonia</div>
+                    <div class="desc">
+                        Chiesa San Pietro e Paolo, Scaletta Superiore (ME)
+                        <br>
+                        Ore 15:30
+                    </div>
+                </div>
+                <div class="section ricevimento">
+                    <div class="title">Ricevimento</div>
+                    <div class="desc">
+                        Parco Jalari, Barcellona Pozzo di Gotto (ME)
+                        <br>
+                        Ore 18:00
+                    </div>
+                </div>
+
+            <button class="btn" onclick="APP.openPartecipazione();">Conferma partecipazione</button>
+
+            <div class="paper-footer">
+                <div class="btn btn-ghost">Come arrivare</div>
+                <div class="btn btn-ghost">Dove pernottare</div>
+            </div>
+        </div>
+
+        <div class="music">
+            <div class="music-desc">
+                <b>Inviaci la tua canzone!</b>
+                <br>La balleremo e la canteremo durante la serata.
+                <br><br><div class="btn">Invia</div>
+            </div>
+        </div>
+
+        <div class="invia-container">
+            <div class="invia">
+                <div class="invia-title">Conferma partecipazione</div>
+                <form onsubmit="APP.onSubmit();" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLScP4oZ__NerX_e81grWodIpjgRZuMRja-_XQZqSwQScdVAmDA/formResponse" target="hidden_iframe">
+                    <label for="nome">Nome e cognome</label>
+                    <input type="text" id="nome" name="entry.2123672407"><br>
+
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="entry.2137321738"><br>
+
+                    <br>
+                    <div class="radio">
+                        <input type="radio" id="ciSonoSi" name="entry.1133537925" value="S%C3%AC,+ci+sar%C3%B2">
+                        <label for="ciSonoSi">Ci sarò</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" id="ciSonoNo" name="entry.1133537925" value="No, non ci sarò">
+                        <label for="ciSonoNo">Non ci sarò</label>
+                    </div>
+
+                    <br>
+                    <label for="numeroPartecipanti">Numero partecipanti</label>
+                    <input type="number" min="1" max="99" id="numeroPartecipanti" name="entry.559760350"><br>
+
+                    <br><br>
+                    <div class="invia-footer">
+                        <div class="btn btn-light" onclick="APP.closePartecipazione();">CHIUDI</div>
+                        <input type="submit" class="btn" value="Conferma">
+                    </div>
+                </form>
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="/*if(submitted) {}*/"></iframe>
+            </div>
         </div>
     </div>
-    <form onsubmit="APP.onSubmit();" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLScP4oZ__NerX_e81grWodIpjgRZuMRja-_XQZqSwQScdVAmDA/formResponse" target="hidden_iframe">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="entry.2123672407"><br>
-
-        <label for="email">Email</label>
-        <input type="text" id="email" name="entry.2137321738"><br>
-
-        <input type="radio" id="ciSonoSi" name="entry.1133537925" value="S%C3%AC,+ci+sar%C3%B2">
-        <label for="ciSonoSi">Sì</label>
-
-        <input type="radio" id="ciSonoNo" name="entry.1133537925" value="No, non ci sarò">
-        <label for="ciSonoNo">No</label>
-
-        <label for="numeroPartecipanti">Numero partecipanti</label>
-        <input type="number" min="1" max="99" id="numeroPartecipanti" name="entry.559760350"><br>
-
-        <input type="submit" value="Conferma">
-    </form>
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="/*if(submitted) {}*/"></iframe>
 </body>
 
 <script type="text/javascript">
+
+    var UTIL = (function() {
+        let util = {};
+
+        util.randomInt = function(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        return util;
+    })();
 
     var APP = (function() {
         const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScP4oZ__NerX_e81grWodIpjgRZuMRja-_XQZqSwQScdVAmDA/formResponse';
@@ -66,7 +143,30 @@
             });
         }
 
+        app.scrollRotate = function() {
+            let $imgs = document.querySelectorAll(".polaroid");
+            for (const $img of $imgs) {
+                let sign = UTIL.randomInt(0, 1);
+                sign = (sign > 0 ? 1 : -1);
+                //$img.style.transform = "rotate(" + window.pageYOffset/200*sign + "deg)";
+
+            }
+        }
+
+        app.openPartecipazione = function() {
+            let $modal = document.querySelector('.invia-container');
+            $modal.classList.add('visible');
+        }
+        app.closePartecipazione = function() {
+            let $modal = document.querySelector('.invia-container');
+            $modal.classList.remove('visible');
+        }
+
         return app;
     })();
+
+    window.onscroll = function () {
+        APP.scrollRotate();
+    };
 </script>
 </html>
