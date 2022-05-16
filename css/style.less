@@ -20,10 +20,9 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	scroll-behavior: smooth;
 	-webkit-tap-highlight-color: transparent;
+    font-size: 16px;
 }
 body{
-	font-size: 16px;
-	line-height: 24px;
 	font-weight: 400;
 	background-color:var(--white);
     color: var(--color);
@@ -60,6 +59,7 @@ label {
     font-size: 1.2rem;
     display: inline-block;
     margin-bottom: 4px;
+    cursor: pointer;
 }
 
 input[type=text], input[type=number], select, textarea {
@@ -67,15 +67,32 @@ input[type=text], input[type=number], select, textarea {
     background: transparent;
     border: 1px solid #e5e5e5;
     font-style: normal;
-    padding: 0 10px;
+    font-size: 1.2rem;
+    padding: 8px 16px;
     width: 100%;
-    height: 37px;
     background: #f4f1de;
     transition: .3s;
     margin-bottom: 16px;
 }
-.radio {
-    margin-bottom: 0px;
+
+.radio, .check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+
+    input {
+        margin-right: 8px;
+        cursor: pointer;
+    }
+
+    label {
+        margin-bottom: 0;
+    }
+}
+
+input[type=radio], input[type=checkbox] {
+    width: 24px;
+    height: 24px;
 }
 
 .btn {
@@ -88,12 +105,14 @@ input[type=text], input[type=number], select, textarea {
     border: 1px solid transparent;
     border-radius: 99px;
     text-transform: uppercase;
+    text-decoration: none;
 
     cursor: pointer;
     transition: .3s;
 
-    &:hover {
-        background-color: #154854;
+    small {
+        font-size: 1.1rem;
+        font-weight: bold;
     }
 
     &.btn-light {
@@ -111,6 +130,11 @@ input[type=text], input[type=number], select, textarea {
         background-color: transparent;
     }
 
+    &.btn-small {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+
     &.btn-negative {
         color: #1b6b7d;
         background-color: #f4f1de;
@@ -118,6 +142,16 @@ input[type=text], input[type=number], select, textarea {
 
     &+.btn {
         margin-left: 16px;
+    }
+
+    &:hover {
+        background-color: #0e353d;
+
+        &.btn-ghost {
+            background-color: #1b6b7d;
+            border-color: #1b6b7d;
+            color: #f4f1de;
+        }
     }
 }
 
@@ -132,6 +166,10 @@ input[type=text], input[type=number], select, textarea {
     align-items: center;
     position: relative;
     overflow: hidden;
+}
+
+.text    {
+    font-size: 1.2rem;
 }
 
 .paper-container {
@@ -187,7 +225,7 @@ input[type=text], input[type=number], select, textarea {
 }
 
 .music {
-    min-width: 800px;
+    min-width: 600px;
     max-width: 600px;
     background-color: #ff8e85;
     padding: 60px 80px;
@@ -314,7 +352,7 @@ input[type=text], input[type=number], select, textarea {
     }
 }
 
-.invia-container {
+.modal-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -334,7 +372,86 @@ input[type=text], input[type=number], select, textarea {
         visibility: visible;
     }
 
-    .invia {
+    .modal {
+        background-color: #1b6b7d;
+        color: #f4f1de;
+        margin: 80px;
+        padding: 50px 80px 60px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        max-height: 100vh;
+        max-width: 800px;
+        align-self: center;
+
+        .modal-title {
+            font-size: 3rem;
+            margin-bottom: 32px;
+        }
+
+        .btn{
+            color: #1b6b7d;
+            background-color: #f4f1de;
+
+            &.btn-light {
+                color: #f4f1de;
+                background-color: transparent;
+                border-color: #f4f1de;
+            }
+
+            &:hover {
+                opacity: .8;
+            }
+        }
+
+        a {
+            color: #f4f1de;
+        }
+
+        &.modal-success {
+            background-color: #579957;
+
+            .modal-footer {
+                justify-content: center;
+            }
+        }
+        &.modal-error {
+            background-color: #994040;
+
+            .modal-footer {
+                justify-content: center;
+            }
+        }
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+}
+
+.alert-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #1b6b7dd6;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s 0s,visibility 0s 0s;
+    &.visible {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .alert {
         background-color: #1b6b7d;
         color: #f4f1de;
         margin: 80px;
@@ -345,7 +462,7 @@ input[type=text], input[type=number], select, textarea {
         max-height: 100vh;
         align-self: center;
 
-        .invia-title {
+        .alert-title {
             font-size: 3rem;
             margin-bottom: 32px;
         }
@@ -355,16 +472,95 @@ input[type=text], input[type=number], select, textarea {
             background-color: #f4f1de;
 
             &.btn-light {
-                padding-left: 0;
                 color: #f4f1de;
                 background-color: transparent;
+                border-color: #f4f1de;
+            }
+        }
+
+        a {
+            color: #f4f1de;
+        }
+
+        &.alert-success {
+            background-color: #579957;
+
+            .modal-footer {
+                justify-content: center;
+            }
+        }
+        &.alert-error {
+            background-color: #994040;
+
+            .alert-footer {
+                justify-content: center;
             }
         }
     }
 
-    .invia-footer {
+    .alert-footer {
         display: flex;
         justify-content: space-between;
+        margin-top: 40px;
+    }
+}
+
+.modal-come {
+    max-width: 800px;
+}
+
+
+.modal-dove {
+    ul {
+        li {
+            list-style: none;
+        }
+        b {
+            font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+        }
+    }
+    .btn-small {
+        margin-left: 16px;
+    }
+
+    ul li {
+        margin-top: 40px;
+        margin-bottom: 48px;
+    }
+}
+
+.modal-container .modal.modal-song {
+    background-color: #ff8e85;
+    color: #1b6b7d;
+
+    .btn {
+        background-color: #1b6b7d;
+        color: #f4f1de;
+
+        &.btn-light {
+            background-color: transparent;
+            border-color: #1b6b7d;
+            color: #1b6b7d;
+        }
+    }
+
+    textarea {
+        height: 150px;
+    }
+}
+
+footer {
+    background-color: #8cbadf;
+    color:#f4f1de;
+    padding: 40px 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        color:#f4f1de;
     }
 }
 

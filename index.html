@@ -14,7 +14,6 @@
 </head>
 <body>
     <div class="container">
-
         <div class="polaroid-container">
             <div class="polaroid-bkg"><div class="polaroid polaroid-1" style="background-image: url(img/foto-1.jpg);"></div></div>
             <div class="polaroid-bkg"><div class="polaroid polaroid-2" style="background-image: url(img/foto-2.jpg);"></div></div>
@@ -34,7 +33,7 @@
                 <div class="section cerimonia">
                     <div class="title">Cerimonia</div>
                     <div class="desc">
-                        Chiesa San Pietro e Paolo, Scaletta Superiore (ME)
+                        Chiesa San Pietro e Paolo, Croce, frazione di Itala (ME)
                         <br>
                         Ore 15:30
                     </div>
@@ -42,17 +41,21 @@
                 <div class="section ricevimento">
                     <div class="title">Ricevimento</div>
                     <div class="desc">
-                        Parco Jalari, Barcellona Pozzo di Gotto (ME)
+                        Parco Museo Jalari, C/da Jalari, Maloto frazione di Barcellona
+                        Pozzo di Gotto (ME)
                         <br>
                         Ore 18:00
                     </div>
                 </div>
 
-            <button class="btn" onclick="APP.openPartecipazione();">Conferma partecipazione</button>
+            <button class="btn" onclick="MODAL.open('modal-invia', '#modalInvia');">
+                Conferma partecipazione
+                <br><small>Entro il 20/06/2022</small>
+            </button>
 
             <div class="paper-footer">
-                <div class="btn btn-ghost">Come arrivare</div>
-                <div class="btn btn-ghost">Dove pernottare</div>
+                <a class="btn btn-ghost" onclick="MODAL.open('modal-come-arrivare', '#modalComeArrivare');">Come arrivare</a>
+                <div class="btn btn-ghost" onclick="MODAL.open('modal-dove', '#modalDove');">Dove pernottare</div>
             </div>
         </div>
 
@@ -60,113 +63,171 @@
             <div class="music-desc">
                 <b>Inviaci la tua canzone!</b>
                 <br>La balleremo e la canteremo durante la serata.
-                <br><br><div class="btn">Invia</div>
+                <br><br><a class="btn" onclick="MODAL.open('modal-song', '#modalSong');">Invia</a>
             </div>
         </div>
 
-        <div class="invia-container">
-            <div class="invia">
-                <div class="invia-title">Conferma partecipazione</div>
-                <form onsubmit="APP.onSubmit();" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLScP4oZ__NerX_e81grWodIpjgRZuMRja-_XQZqSwQScdVAmDA/formResponse" target="hidden_iframe">
-                    <label for="nome">Nome e cognome</label>
-                    <input type="text" id="nome" name="entry.2123672407"><br>
+        <template id="modalInvia">
+            <div class="modal-title">Conferma partecipazione</div>
+            <div class="modal-content">
+                <form class="formSubscription" onsubmit="return false;">
+                    <label for="name">Nome e cognome</label>
+                    <input type="text" id="name" name="name"><br>
 
                     <label for="email">Email</label>
-                    <input type="text" id="email" name="entry.2137321738"><br>
+                    <input type="text" id="email" name="email"><br>
 
                     <br>
                     <div class="radio">
-                        <input type="radio" id="ciSonoSi" name="entry.1133537925" value="S%C3%AC,+ci+sar%C3%B2">
-                        <label for="ciSonoSi">Ci sarò</label>
+                        <input type="radio" id="attendance1" name="attendance" value="1">
+                        <label for="attendance1">Ci sarò</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" id="ciSonoNo" name="entry.1133537925" value="No, non ci sarò">
-                        <label for="ciSonoNo">Non ci sarò</label>
+                        <input type="radio" id="attendance0" name="attendance" value="0">
+                        <label for="attendance0">Non ci sarò</label>
                     </div>
 
                     <br>
-                    <label for="numeroPartecipanti">Numero partecipanti</label>
-                    <input type="number" min="1" max="99" id="numeroPartecipanti" name="entry.559760350"><br>
+                    <label for="attendees">Numero partecipanti</label>
+                    <br><input type="number" min="1" max="99" id="attendees" name="attendees" style="width: 80px">
 
                     <br><br>
-                    <div class="invia-footer">
-                        <div class="btn btn-light" onclick="APP.closePartecipazione();">CHIUDI</div>
-                        <input type="submit" class="btn" value="Conferma">
+                    <div class="check">
+                        <input type="checkbox" name="shuttle" id="shuttle" value="1">
+                        <label for="shuttle">Servizio navetta</label>
                     </div>
+                    <p>
+                        Nel giorno del matrimonio gli sposi
+                        offriranno agli ospiti la possibilità di raggiungere la chiesa ed il luogo del ricevimento
+                        con delle navette; al fine di agevolare l’organizzazione di tale servizio chiediamo
+                        gentilmente di indicare se ne usufruirete
+                    </p>
                 </form>
-                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="/*if(submitted) {}*/"></iframe>
+            </div>
+            <div class="modal-footer">
+                <div class="btn btn-light" onclick="MODAL.close();">CHIUDI</div>
+                <button class="btn" onclick="APP.insertSubscription();">Conferma</button>
+            </div>
+        </template>
+
+        <template id="modalComeArrivare" class="modal-come">
+            <div class="modal-title">Come arrivare</div>
+            <div class="modal-content">
+                <p class="text">
+                    Il mezzo più comodo per raggiungere Alì Terme (ME) dall’aeroporto di Catania è il treno;
+                    è infatti possibile raggiungere la vicina stazione ferroviaria <b>Catania Aeroporto Fontanarossa</b>:
+                    <ul>
+                        <li>
+                            a piedi (la distanza è di circa 600m) seguendo il percorso pedonale;
+                        </li>
+                        <li>
+                            con navetta dell’AMTS; la navetta passa ogni 10 minuti circa dalle ore 4.30 alle
+                            ore 22.40 ed il costo del biglietto è di 1€. E’ possibile acquistare il biglietto
+                            integrato (treno+navetta) presso le stazioni Trenitalia oppure on-line sul sito
+                            Trenitalia selezionando come stazione di partenza “Catania Aeroporto
+                            Terminal”.
+                            <br><u><b>ATTENZIONE</b></u>: l’acquisto del biglietto Trenitalia con partenza da
+                            “Catania Aeroporto Fontanarossa” NON comprende il servizio della navetta.
+                        </li>
+                    </ul>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn btn-light" onclick="MODAL.close();">CHIUDI</div>
+            </div>
+        </template>
+
+        <template id="modalDove" class="modal-dove">
+            <div class="modal-title">Dove pernottare</div>
+            <div class="modal-content">
+                <p>Al momento della prenotazione fare presente se si arriva in treno.</p>
+                <p class="text">
+                    <ul>
+                        <li>
+                            <b>Terme Marino
+                                <a href="https://goo.gl/maps/WLc8GbyKCP3YTVrN9" target="blank" class="btn btn-small">Indicazioni stradali</a>
+                            </b>
+                            Via Roma 25, Alì Terme (ME)
+                            <br>339/7360261 (Mario Marino)
+                            <br>dista 700m dalla stazione di Alì Terme (ME)
+                            <br>
+                        </li>
+                        <li>
+                            <b>Villa Orchidea
+                                <a href="https://goo.gl/maps/QzsWpfkpDRSDvbHe8" target="blank" class="btn btn-small">Indicazioni stradali</a>
+                            </b>
+                            Contrada Baglio, Alì Terme (ME)
+                            <br>0942/701025; 340/8230288; 348/0952641
+                            <br>dista 900m dalla stazione di Alì Terme (ME).
+                            <br>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <div class="btn btn-light" onclick="MODAL.close();">CHIUDI</div>
+            </div>
+        </template>
+
+        <template id="modalSong" class="modal-song">
+            <div class="modal-title">Invia canzone</div>
+            <div class="modal-content">
+                <form class="formSong" onsubmit="return false;">
+                    <label for="name">Nominativo</label>
+                    <input type="text" id="name" name="name"><br>
+
+                    <label for="link">Link canzone (Spotify, YouTube)</label>
+                    <input type="text" id="link" name="link"><br>
+
+                    <label for="note">Note</label>
+                    <textarea name="note" id="note" cols="30" rows="30"></textarea>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="btn btn-light" onclick="MODAL.close();">CHIUDI</div>
+                <button class="btn" onclick="APP.insertSong();">Conferma</button>
+            </div>
+        </template>
+
+        <template id="modalReservedArea" class="modal-reserved-area">
+            <div class="modal-title">Area riservata</div>
+            <div class="modal-content">
+                <form class="formReservedArea" onsubmit="return false;">
+                    <label for="password">Password</label>
+                    <input type="text" id="password" name="password">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="btn btn-light" onclick="MODAL.close();">CHIUDI</div>
+                <button class="btn" onclick="APP.reservedArea();">Accedi</button>
+            </div>
+        </template>
+
+        <div class="modal-container">
+            <div class="modal">
+                <div class="modal-title"></div>
+                <div class="modal-content"></div>
+                <div class="modal-footer">
+                    <div class="btn btn-light" onclick="MODAL.close();">CHIUDI</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-container">
+            <div class="alert">
+                <div class="alert-title"></div>
+                <div class="alert-content"></div>
+                <div class="alert-footer">
+                    <div class="btn btn-light" onclick="ALERT.close();">RIPROVA</div>
+                </div>
             </div>
         </div>
     </div>
+
+    <footer>
+        <div>© 2022 - <a onclick="MODAL.open('modal-reserved-area', '#modalReservedArea')">Area riservata</a></div>
+    </footer>
+
+    <script src="js/app.js"></script>
 </body>
-
-<script type="text/javascript">
-
-    var UTIL = (function() {
-        let util = {};
-
-        util.randomInt = function(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min) + min);
-        }
-
-        return util;
-    })();
-
-    var APP = (function() {
-        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScP4oZ__NerX_e81grWodIpjgRZuMRja-_XQZqSwQScdVAmDA/formResponse';
-        let app = {};
-
-        app.onSubmit = function() {
-            let submitted=true;
-            console.log('form inviato');
-        }
-
-        app.submit = function() {
-            let $form = document.querySelector('#form');
-            let formData = new FormData($form);
-
-            fetch(GOOGLE_FORM_URL, formData).then(function (response) {
-                // The API call was successful!
-                if (response.ok) {
-                    return response.text();
-                } else {
-                    return Promise.reject(response);
-                }
-            }).then(function (data) {
-                // This is the JSON from our response
-                console.log('OK');
-            }).catch(function (err) {
-                // There was an error
-                console.warn('Something went wrong.', err);
-            });
-        }
-
-        app.scrollRotate = function() {
-            let $imgs = document.querySelectorAll(".polaroid");
-            for (const $img of $imgs) {
-                let sign = UTIL.randomInt(0, 1);
-                sign = (sign > 0 ? 1 : -1);
-                //$img.style.transform = "rotate(" + window.pageYOffset/200*sign + "deg)";
-
-            }
-        }
-
-        app.openPartecipazione = function() {
-            let $modal = document.querySelector('.invia-container');
-            $modal.classList.add('visible');
-        }
-        app.closePartecipazione = function() {
-            let $modal = document.querySelector('.invia-container');
-            $modal.classList.remove('visible');
-        }
-
-        return app;
-    })();
-
-    window.onscroll = function () {
-        APP.scrollRotate();
-    };
-</script>
 </html>
