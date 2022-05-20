@@ -20,7 +20,7 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	scroll-behavior: smooth;
 	-webkit-tap-highlight-color: transparent;
-    font-size: 16px;
+    font-size: 24px;
 }
 body{
 	font-weight: 400;
@@ -51,12 +51,26 @@ a {
     overflow: hidden;
 }
 
+ul {
+    margin: 24px 0 32px;
+    padding-left: 24px;
+
+    li {
+        margin-bottom: 8px;
+    }
+}
+
 [hidden] {
     display: none !important;
 }
 
+[disabled] {
+    pointer-events: none;
+    opacity: .4;
+}
+
 label {
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: inline-block;
     margin-bottom: 4px;
     cursor: pointer;
@@ -67,7 +81,7 @@ input[type=text], input[type=number], select, textarea {
     background: transparent;
     border: 1px solid #e5e5e5;
     font-style: normal;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 8px 16px;
     width: 100%;
     background: #f4f1de;
@@ -96,7 +110,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 .btn {
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 400;
     display: inline-block;
     padding: 16px 40px;
@@ -111,7 +125,7 @@ input[type=radio], input[type=checkbox] {
     transition: .3s;
 
     small {
-        font-size: 1.1rem;
+        font-size: .8rem;
         font-weight: bold;
     }
 
@@ -123,7 +137,7 @@ input[type=radio], input[type=checkbox] {
     }
 
     &.btn-ghost {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: 400;
         color: #1b6b7d;
         border-color: #1b6b7d;
@@ -169,7 +183,7 @@ input[type=radio], input[type=checkbox] {
 }
 
 .text    {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .paper-container {
@@ -177,9 +191,9 @@ input[type=radio], input[type=checkbox] {
 }
 
 .paper {
-    width: 600px;
+    width: 700px;
     background-color: #f4f1de;
-    padding: 60px 80px;
+    padding: 60px 72px;
     box-shadow: 0 0 50px var(--color);
     transform: rotateZ(-2deg);
     display: flex;
@@ -206,13 +220,12 @@ input[type=radio], input[type=checkbox] {
     }
 
     .date {
-        font-size: 3rem;
-        font-weight: 500;
+        font-size: 2.4rem;
         text-align: center;
         margin-bottom: 48px;
     }
     .title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         align-self: center;
         background-color: #f4f1de;
         display: inline-block;
@@ -223,7 +236,7 @@ input[type=radio], input[type=checkbox] {
         text-transform: uppercase;
     }
     .desc {
-        font-size: 1.4rem;
+        font-size: 1rem;
     }
 
     .btn {
@@ -247,15 +260,17 @@ input[type=radio], input[type=checkbox] {
     transform: rotateZ(1deg);
     z-index: 25;
 
-    .music-desc {
+    .music-title {
         font-size: 2rem;
+        line-height: .8em;
+        font-weight: 600;
     }
 }
 
 .donation {
     max-width: 700px;
     background-color: #146872;
-    padding: 50px 50px;
+    padding: 80px 60px;
     box-shadow: 0 0 50px var(--color);
     display: flex;
     flex-direction: column;
@@ -271,17 +286,12 @@ input[type=radio], input[type=checkbox] {
     }
 
     .donation-title {
-        font-size: 3rem;
+        font-size: 2rem;
         line-height: .8em;
         font-weight: 600;
     }
     .donation-desc {
-        font-size: 1.3rem;
         padding: 0 60px;
-
-        b {
-            font-size: 1.8rem;
-        }
     }
 
 }
@@ -328,9 +338,9 @@ input[type=radio], input[type=checkbox] {
     display: flex;
     flex-direction: column;
     position: absolute;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin: 350px 0;
+    margin: 0;
 }
 
 .polaroid-bkg {
@@ -368,10 +378,9 @@ input[type=radio], input[type=checkbox] {
     }
 
     &.polaroid-1 {
-        top: 0;
-        right: -450px;
+        top: 2480px;
+        right: 430px;
         transform: rotateZ(-5deg);
-        opacity: 0;
     }
     &.polaroid-2 {
         top: -340px;
@@ -404,8 +413,8 @@ input[type=radio], input[type=checkbox] {
         transform: rotateZ(-3deg);
     }
     &.polaroid-8 {
-        top: -630px;
-        left: -30px;
+        top: -130px;
+        left: 370px;
         transform: rotateZ(7deg);
     }
 }
@@ -445,7 +454,7 @@ input[type=radio], input[type=checkbox] {
         border-radius: 20px;
 
         .modal-title {
-            font-size: 3rem;
+            font-size: 2rem;
             margin-bottom: 32px;
         }
 
@@ -569,20 +578,20 @@ input[type=radio], input[type=checkbox] {
     max-width: 800px;
 }
 
-
 .modal-dove {
     ul {
+        padding: 0;
         li {
             list-style: none;
         }
         b {
-            font-size: 2.2rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
         }
     }
     .btn-small {
-        margin-left: 16px;
+        margin: 16px 0;
     }
 
     ul li {
@@ -611,6 +620,46 @@ input[type=radio], input[type=checkbox] {
     }
 }
 
+.reserved-area {
+    padding: 40px 80px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    h3 {
+        font-size: 2rem;
+        margin-bottom: 32px;
+    }
+
+    .table {
+        margin-bottom: 56px;
+    }
+
+    margin-bottom: 100px;
+}
+
+.table {
+    color: #333;
+    background: white;
+    border: 1px solid grey;
+    font-size: 12pt;
+    border-collapse: collapse;
+
+  thead th{
+    color: #777;
+    background: rgba(0,0,0,.1);
+  }
+  th, td {
+    padding: .5em;
+    border: 1px solid lightgrey;
+  }
+  tbody tr:nth-of-type(odd) {
+    background: rgba(0,0,0,.05);
+  }
+}
+
+/* FOOTER */
 footer {
     background-color: #146872;
     color:#f4f1de;
@@ -618,9 +667,21 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    bottom: 0;
+    font-size: .6rem;
 
     a {
         color:#f4f1de;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    &.reserved-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 100px;
     }
 }
 
@@ -634,9 +695,13 @@ footer {
         border-radius: 0;
         border: none;
         padding: 24px;
+        height: 100%;
 
         .modal-title{
             line-height: .8em;
+        }
+        .modal-content {
+            flex-grow: 1;
         }
         .modal-footer {
             flex-wrap: wrap;
@@ -656,36 +721,44 @@ footer {
         }
 
         .polaroid.polaroid-1 {
-
+            top: 0;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            transform: rotateZ(20deg);
         }
         .polaroid.polaroid-2 {
-            top: 0;
-            left: 0px;
+            top: 380px;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            z-index: 21;
         }
         .polaroid.polaroid-3 {
-            opacity: 0;
+            top: 0;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
         }
         .polaroid.polaroid-4 {
-            top: 360px;
+            top: 380px;
+            right: 0;
             left: 0;
+            margin: 0 auto;
         }
         .polaroid.polaroid-5 {
-            top: 0;
-            right: -30px;
-            opacity: 1;
+
+            opacity: 0;
         }
         .polaroid.polaroid-6 {
-            bottom: 0;
-            left: 309px;
+
+            opacity: 0;
         }
         .polaroid.polaroid-7 {
-            bottom: 0;
-            right: 190px;
+            opacity: 0;
         }
         .polaroid.polaroid-8 {
-            top: 330px;
-            right: -20px;
-            left: auto;
+            opacity: 0;
         }
     }
 
@@ -708,7 +781,7 @@ footer {
         }
 
         .date {
-            font-size: 2.2rem;
+            font-size: 1.6rem;
             margin-bottom: 24px;
         }
 
@@ -728,11 +801,10 @@ footer {
         transform: rotateZ(0deg);
         margin-bottom: 100px;
         box-shadow: none;
-        padding: 30px;
+        padding: 60px 30px;
 
         .music-desc {
             line-height: .8em;
-            font-size: 1.4rem;
 
             b {
                 line-height: .8em;
@@ -748,15 +820,20 @@ footer {
         transform: rotateZ(0deg);
         margin-bottom: 0;
         box-shadow: none;
-        padding: 30px;
+        padding: 60px 30px;
 
         .donation-desc {
             padding: 0;
-            font-size: 1.4rem;
+        }
+    }
+}
 
-            b {
-                font-size: 1.4rem;
-            }
+@media (max-width: 425px) {
+    .modal-footer {
+        flex-direction: column-reverse;
+        .btn {
+            margin-left: 0;
+            align-self: center;
         }
     }
 }
@@ -775,3 +852,19 @@ footer {
         transform: translateY(0);
     }
 }
+
+.pulse{
+    animation: pulse 3s infinite;
+}@keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 #146872;
+    }
+
+    70% {
+      box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }

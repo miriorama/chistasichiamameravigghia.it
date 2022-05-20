@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elisa & Fabio si sposano!</title>
+    <title>Meravigghia!</title>
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -28,7 +28,7 @@
         </div>
 
         <div class="paper">
-            <img class="sticker" src="/img/sticker.png" alt="">
+            <img class="sticker" src="/img/sticker.png" alt="Chista si chiama meravigghia!">
 
             <div class="img">
                 <img src="/img/elisa&fabio.svg" alt="">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
 
-            <button class="btn" onclick="MODAL.open('modal-invia', '#modalInvia');">
+            <button class="btn pulse" onclick="MODAL.open('modal-invia', '#modalInvia');">
                 Conferma partecipazione
                 <br><small>Entro il 20/06/2022</small>
             </button>
@@ -76,9 +76,11 @@
         </div>
 
         <div class="music">
+            <div class="music-title">
+                Inviaci la tua canzone
+            </div>
             <div class="music-desc">
-                <b>Inviaci la tua canzone!</b>
-                <br>La balleremo e la canteremo durante la serata.
+                <br>Da ballare e cantare tutta la sera!
                 <br><br><a class="btn" onclick="MODAL.open('modal-song', '#modalSong');">Invia</a>
             </div>
         </div>
@@ -86,7 +88,7 @@
         <template id="modalInvia">
             <div class="modal-title">Conferma partecipazione</div>
             <div class="modal-content">
-                <form class="formSubscription" onsubmit="return false;">
+                <form class="formSubscription" onsubmit="APP.insertSubscription(); return false;">
                     <label for="name">Nome e cognome</label>
                     <input type="text" id="name" name="name"><br>
 
@@ -95,29 +97,31 @@
 
                     <br>
                     <div class="radio">
-                        <input type="radio" id="attendance1" name="attendance" value="1">
+                        <input type="radio" id="attendance1" onchange="APP.attendanceOnChange(this);" name="attendance" value="1">
                         <label for="attendance1">Ci sarò</label>
                     </div>
                     <div class="radio">
-                        <input type="radio" id="attendance0" name="attendance" value="0">
+                        <input type="radio" id="attendance0" onchange="APP.attendanceOnChange(this);" name="attendance" value="0">
                         <label for="attendance0">Non ci sarò</label>
                     </div>
 
-                    <br>
-                    <label for="attendees">Numero partecipanti</label>
-                    <br><input type="number" min="1" max="99" id="attendees" name="attendees" style="width: 80px">
+                    <div class="only-there">
+                        <br>
+                        <label for="attendees">Numero partecipanti</label>
+                        <br><input type="number" min="1" max="99" id="attendees" name="attendees" style="width: 80px">
 
-                    <br><br>
-                    <div class="check">
-                        <input type="checkbox" name="shuttle" id="shuttle" value="1">
-                        <label for="shuttle">Servizio navetta</label>
+                        <br><br>
+                        <div class="check">
+                            <input type="checkbox" name="shuttle" id="shuttle" value="1">
+                            <label for="shuttle">Servizio navetta</label>
+                        </div>
+                        <p>
+                            Nel giorno del matrimonio gli sposi
+                            offriranno agli ospiti la possibilità di raggiungere la chiesa ed il luogo del ricevimento
+                            con delle navette; al fine di agevolare l’organizzazione di tale servizio chiediamo
+                            gentilmente di indicare se ne usufruirete
+                        </p>
                     </div>
-                    <p>
-                        Nel giorno del matrimonio gli sposi
-                        offriranno agli ospiti la possibilità di raggiungere la chiesa ed il luogo del ricevimento
-                        con delle navette; al fine di agevolare l’organizzazione di tale servizio chiediamo
-                        gentilmente di indicare se ne usufruirete
-                    </p>
                 </form>
             </div>
             <div class="modal-footer">
@@ -161,21 +165,20 @@
                     <ul>
                         <li>
                             <b>Terme Marino
-                                <a href="https://goo.gl/maps/WLc8GbyKCP3YTVrN9" target="blank" class="btn btn-small">Indicazioni stradali</a>
                             </b>
                             Via Roma 25, Alì Terme (ME)
                             <br>339/7360261 (Mario Marino)
                             <br>dista 700m dalla stazione di Alì Terme (ME)
-                            <br>
+                            <br><a href="https://goo.gl/maps/WLc8GbyKCP3YTVrN9" target="blank" class="btn btn-small">Indicazioni stradali</a>
                         </li>
                         <li>
                             <b>Villa Orchidea
-                                <a href="https://goo.gl/maps/QzsWpfkpDRSDvbHe8" target="blank" class="btn btn-small">Indicazioni stradali</a>
+
                             </b>
                             Contrada Baglio, Alì Terme (ME)
                             <br>0942/701025; 340/8230288; 348/0952641
                             <br>dista 900m dalla stazione di Alì Terme (ME).
-                            <br>
+                            <br><a href="https://goo.gl/maps/QzsWpfkpDRSDvbHe8" target="blank" class="btn btn-small">Indicazioni stradali</a>
                         </li>
                     </ul>
                 </p>
@@ -188,7 +191,7 @@
         <template id="modalSong" class="modal-song">
             <div class="modal-title">Invia canzone</div>
             <div class="modal-content">
-                <form class="formSong" onsubmit="return false;">
+                <form class="formSong" onsubmit="APP.insertSong(); return false;">
                     <label for="name">Nominativo</label>
                     <input type="text" id="name" name="name"><br>
 
@@ -208,14 +211,14 @@
         <template id="modalReservedArea" class="modal-reserved-area">
             <div class="modal-title">Area riservata</div>
             <div class="modal-content">
-                <form class="formReservedArea" onsubmit="return false;">
-                    <label for="password">Password</label>
-                    <input type="text" id="password" name="password">
+                <form class="formReservedArea" onsubmit="APP.reservedAreaUrl(); return false;">
+                    <label for="key">Password</label>
+                    <input type="text" id="key" name="key">
                 </form>
             </div>
             <div class="modal-footer">
                 <div class="btn btn-light" onclick="MODAL.close();">CHIUDI</div>
-                <button class="btn" onclick="APP.reservedArea();">Accedi</button>
+                <button class="btn" onclick="APP.reservedAreaUrl();">Accedi</button>
             </div>
         </template>
 

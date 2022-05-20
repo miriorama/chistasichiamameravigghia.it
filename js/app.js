@@ -8,6 +8,13 @@ var UTIL = (function() {
         return Math.floor(Math.random() * (max - min) + min);
     }
 
+    util.openInNewTab = function(href) {
+        Object.assign(document.createElement('a'), {
+            target: '_blank',
+            href: href,
+        }).click();
+    }
+
     return util;
 })();
 
@@ -53,8 +60,7 @@ var API = (function () {
         }
 
         return new Promise((resolve, reject) => {
-            //https://localhost:8001/api.php
-            fetch('https://api.miriorama.com/api.php', fetchOptions)
+            fetch('https://api.miriorama.com/', fetchOptions)
             .then(parseJSON)
             .then((response) => {
                 if (response.ok) {
@@ -191,24 +197,51 @@ var APP = (function() {
 
         API('app::insertSong', formData)
         .then(function(data){
-            MODAL.success('Canzone inviata correttamente. Il Dj ringrazia.');
+            MODAL.success('Canzone inviata correttamente.<br>Il Dj ringrazia.');
         })
         .catch(function(error){
             ALERT.error(error.message);
         });
     }
 
-    app.reservedArea = function() {
+    app.reservedAreaUrl = function() {
         let $formReservedArea = document.querySelector('.formReservedArea');
         let formData = new FormData($formReservedArea);
 
-        API('app::reservedArea', formData)
+        API('app::reservedAreaUrl', formData)
         .then(function(data){
-            MODAL.open(null, null, data);
+            UTIL.openInNewTab(data);
+            MODAL.close();
         })
         .catch(function(error){
             ALERT.error(error.message);
         });
+    }
+
+    app.reservedAreaHtml = function(key) {
+        const params = new URLSearchParams(location.search);
+
+        API('app::reservedAreaHtml', {
+            key: params.get('key')
+        })
+        .then(function(data){
+            let $reservedArea = document.querySelector('.reserved-area');
+            $reservedArea.innerHTML = data;
+        })
+        .catch(function(error){
+            ALERT.error(error.message);
+        });
+    }
+
+    app.attendanceOnChange = function($el) {
+        let $onlyThere = document.querySelector('.only-there');
+
+        if($el.value == 1) {
+            $onlyThere.removeAttribute('disabled');
+        } else {
+            $onlyThere.setAttribute('disabled', '');
+        }
+
     }
 
     app.scrollRotate = function() {
