@@ -101,6 +101,8 @@ var MODAL = (function () {
             $modal.classList.add(cssClass);
         }
 
+        $modal.scrollTop = 0;
+
         $modalContainer.classList.add('visible');
     }
 
