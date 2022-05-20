@@ -176,7 +176,7 @@ input[type=radio], input[type=checkbox] {
 .container {
     display: flex;
     flex-direction: column;
-    background: url(../img/pattern-h.jpg?v=4);
+    background: url(../img/pattern-h.jpg?v=5);
     background-size: contain;
     width: 100%;
     display: flex;
@@ -206,7 +206,7 @@ input[type=radio], input[type=checkbox] {
     text-align: center;
     margin: 240px 0 120px;
     z-index: 25;
-    background-image: url(../img/texture.png?v=4);
+    background-image: url(../img/texture.png?v=5);
     background-size: contain;
     background-blend-mode: soft-light;
 
@@ -370,7 +370,7 @@ input[type=radio], input[type=checkbox] {
 
     &:after {
         content: '';
-        background-image: url(../img/texture.png?v=4);
+        background-image: url(../img/texture.png?v=5);
         width: calc(100% + 48px);
         height: calc(100% + 80px);
         position: absolute;
@@ -589,6 +589,7 @@ input[type=radio], input[type=checkbox] {
 .modal-dove {
     ul {
         padding: 0;
+        margin-bottom: 0;
         li {
             list-style: none;
         }
@@ -604,7 +605,11 @@ input[type=radio], input[type=checkbox] {
 
     ul li {
         margin-top: 40px;
-        margin-bottom: 48px;
+        margin-bottom: 40px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 
@@ -706,6 +711,10 @@ footer {
         font-size: 20px;
     }
 
+    .btn {
+        padding: 12px 24px;
+    }
+
     .modal-container .modal {
         margin: 0;
         border-radius: 0;
@@ -721,6 +730,7 @@ footer {
             flex-grow: 1;
         }
         .modal-footer {
+            margin-top: 8px;
             flex-wrap: wrap;
             justify-content: center;
             .btn {
@@ -848,9 +858,8 @@ footer {
 
 @media (max-width: 425px) {
     .modal-footer {
-        flex-direction: column-reverse;
+        //flex-direction: column-reverse;
         .btn {
-            margin-left: 0;
             align-self: center;
         }
     }
