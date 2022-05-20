@@ -103,17 +103,10 @@ var MODAL = (function () {
 
         $modal.scrollTop = 0;
 
+        let $body = document.querySelector('body');
+        $body.classList.add('no-scroll');
+
         $modalContainer.classList.add('visible');
-    }
-
-    modal.html = function(html = null){
-        let $modalContainer = document.querySelector('.modal-container');
-        let $modal = $modalContainer.querySelector('.modal');
-        let $modalContent = $modalContainer.querySelector('.modal-content');
-
-        if(html) {
-            $modalContent.innerHTML = html;
-        }
     }
 
     modal.close = function(){
@@ -122,6 +115,10 @@ var MODAL = (function () {
 
         $modalContainer.classList.remove('visible');
         $modal.setAttribute('class', 'modal');
+
+
+        let $body = document.querySelector('body');
+        $body.classList.remove('no-scroll');
     }
 
     modal.success = function(message = 'Richiesta inviata correttamente') {
