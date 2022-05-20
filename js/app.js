@@ -244,19 +244,18 @@ var APP = (function() {
 
     }
 
-    app.scrollRotate = function() {
-        let $imgs = document.querySelectorAll(".polaroid");
+    app.polaroidAnimate = function() {
+        let $imgs = document.querySelectorAll(".no-animation");
         for (const $img of $imgs) {
-            let sign = UTIL.randomInt(0, 1);
-            sign = (sign > 0 ? 1 : -1);
-            //$img.style.transform = "rotate(" + window.pageYOffset/200*sign + "deg)";
-
+            $img.classList.remove('no-animation');
         }
     }
 
     return app;
 })();
 
-window.onscroll = function () {
-    APP.scrollRotate();
-};
+window.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(function() {
+        APP.polaroidAnimate();
+    }, 300);
+});
