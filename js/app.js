@@ -215,12 +215,15 @@ var APP = (function() {
             formData.append('file[]', $photo.files[i]);
         }
 
+        MODAL.open(null, null, 'Caricamento...');
+
         API('app::sendPhoto', formData)
         .then(function(){
             $photo.value = null;
             MODAL.success('Foto caricate correttamente.');
         })
         .catch(function(error){
+            MODAL.close();
             ALERT.error(error.message);
         });
     }
