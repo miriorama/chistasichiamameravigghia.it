@@ -109,6 +109,16 @@ input[type=radio], input[type=checkbox] {
     height: 24px;
 }
 
+input[type="file"] {
+    display: none;
+}
+.photo-label {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
 .no-scroll{
     overflow: hidden;
 }
@@ -176,7 +186,7 @@ input[type=radio], input[type=checkbox] {
 .container {
     display: flex;
     flex-direction: column;
-    background: url(../img/pattern-h.jpg?v=8);
+    background: url(../img/pattern-h.jpg?v=9);
     background-size: contain;
     width: 100%;
     display: flex;
@@ -206,7 +216,7 @@ input[type=radio], input[type=checkbox] {
     text-align: center;
     margin: 240px 0 120px;
     z-index: 25;
-    background-image: url(../img/texture.png?v=8);
+    background-image: url(../img/texture.png?v=9);
     background-size: contain;
 
     .sticker {
@@ -267,6 +277,33 @@ input[type=radio], input[type=checkbox] {
         font-size: 2rem;
         line-height: .8em;
         font-weight: 600;
+    }
+}
+
+.photo {
+    min-width: 600px;
+    background-color: #cec661;
+    padding: 60px 80px;
+    box-shadow: 0 0 50px var(--color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 320px;
+    transform: rotateZ(-1deg);
+    z-index: 25;
+
+    .photo-title {
+        font-size: 2rem;
+        line-height: .8em;
+        font-weight: 600;
+    }
+    .photo-label {
+        display: inline-block;
+        cursor: pointer;
+        border: 4px dashed #146872;
+        margin: 48px 0 16px;
+        padding: 12px 40px 16px;
     }
 }
 
@@ -369,7 +406,7 @@ input[type=radio], input[type=checkbox] {
 
     &:after {
         content: '';
-        background-image: url(../img/texture.png?v=8);
+        background-image: url(../img/texture.png?v=9);
         width: calc(100% + 48px);
         height: calc(100% + 80px);
         position: absolute;

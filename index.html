@@ -14,13 +14,13 @@
     <meta property="og:image" content="https://chistasichiamameravigghia.it/img/cover.jpg" />
     <meta property="og:type" content="website" />
 
-    <link rel="stylesheet" href="css/style.css?v=8">
+    <link rel="stylesheet" href="css/style.css?v=9">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="/img/favicon.png?v=8">
+    <link rel="icon" type="image/png" href="/img/favicon.png?v=9">
 </head>
 <body>
     <div class="container">
@@ -91,6 +91,21 @@
             <div class="music-desc">
                 <br>Da ballare e cantare tutta la sera!
                 <br><br><a class="btn" onclick="MODAL.open('modal-song', '#modalSong');">Invia</a>
+            </div>
+        </div>
+
+        <div class="photo">
+            <div class="photo-title">
+                Inviaci le tue foto
+            </div>
+            <div class="photo-desc">
+                <form class="formPhoto" onsubmit="return false;">
+                    <br><br>
+                    <label for="photo" class="btn">
+                        Carica foto
+                    </label>
+                    <input type="file" id="photo" onchange="APP.sendPhoto();" name="photo" accept="image/png, image/jpeg" multiple>
+                </form>
             </div>
         </div>
 
@@ -256,6 +271,6 @@
         <div>© 2022 - <a onclick="MODAL.open('modal-reserved-area', '#modalReservedArea')">Area riservata</a></div>
     </footer>
 
-    <script src="js/app.js?v=8"></script>
+    <script src="js/app.js?v=9"></script>
 </body>
 </html>

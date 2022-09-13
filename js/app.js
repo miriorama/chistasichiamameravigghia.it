@@ -203,6 +203,28 @@ var APP = (function() {
         });
     }
 
+    app.sendPhoto = function() {
+        let $photo = document.querySelector('#photo');
+
+        if(!$photo.files.length) {
+            return;
+        }
+
+        let formData = new FormData();
+        for (let i = 0; i < $photo.files.length; i++) {
+            formData.append('file[]', $photo.files[i]);
+        }
+
+        API('app::sendPhoto', formData)
+        .then(function(){
+            $photo.value = null;
+            MODAL.success('Foto caricate correttamente.');
+        })
+        .catch(function(error){
+            ALERT.error(error.message);
+        });
+    }
+
     app.reservedAreaUrl = function() {
         let $formReservedArea = document.querySelector('.formReservedArea');
         let formData = new FormData($formReservedArea);
