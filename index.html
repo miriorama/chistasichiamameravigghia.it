@@ -60,10 +60,10 @@
                     </div>
                 </div>
 
-            <button class="btn pulse" onclick="MODAL.open('modal-invia', '#modalInvia');">
+            <!--<button class="btn pulse" onclick="MODAL.open('modal-invia', '#modalInvia');">
                 Conferma partecipazione
                 <br><small>Entro il 20/06/2022</small>
-            </button>
+            </button>-->
 
             <div class="paper-footer">
                 <a class="btn btn-ghost" onclick="MODAL.open('modal-come-arrivare', '#modalComeArrivare');">Come arrivare</a>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div class="music">
+        <!--<div class="music">
             <div class="music-title">
                 Inviaci la tua canzone
             </div>
@@ -92,9 +92,9 @@
                 <br>Da ballare e cantare tutta la sera!
                 <br><br><a class="btn" onclick="MODAL.open('modal-song', '#modalSong');">Invia</a>
             </div>
-        </div>
+        </div>-->
 
-        <div class="photo">
+        <!--<div class="photo">
             <div class="photo-title">
                 Inviaci le tue foto
             </div>
@@ -107,7 +107,7 @@
                     <input type="file" id="photo" onchange="APP.sendPhoto();" name="photo" accept="image/png, image/jpeg" multiple>
                 </form>
             </div>
-        </div>
+        </div>-->
 
         <template id="modalInvia">
             <div class="modal-title">Conferma partecipazione</div>
@@ -268,7 +268,7 @@
     </div>
 
     <footer>
-        <div>© 2022 - <a onclick="MODAL.open('modal-reserved-area', '#modalReservedArea')">Area riservata</a></div>
+        <div>© 2022 <!--- <a onclick="MODAL.open('modal-reserved-area', '#modalReservedArea')">Area riservata</a>--></div>
     </footer>
 
     <script src="js/app.js?v=9"></script>
